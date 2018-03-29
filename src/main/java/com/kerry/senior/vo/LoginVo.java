@@ -1,8 +1,6 @@
 package com.kerry.senior.vo;
 
-import org.hibernate.validator.constraints.Length;
-
-import javax.validation.constraints.NotNull;
+import com.kerry.senior.validator.IsMobile;
 
 /**
  * @author CP_dongchuan
@@ -10,12 +8,12 @@ import javax.validation.constraints.NotNull;
  */
 public class LoginVo {
 
-    @NotNull
+    //@NotNull
     //@IsMobile
     private String mobile;
 
-    @NotNull
-    @Length(min=32)
+    @IsMobile
+    //@Length(min=32)
     private String password;
 
     public String getMobile() {

@@ -5,6 +5,7 @@ import com.kerry.senior.mapper.UserMapper;
 import com.kerry.senior.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * @date 2018/3/28
  */
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -20,7 +22,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int insert(User user) {
-        return userMapper.inset(user);
+        int i = userMapper.inset(user);
+        return i;
     }
 
     @Override

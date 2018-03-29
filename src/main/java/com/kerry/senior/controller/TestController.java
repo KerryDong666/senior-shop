@@ -30,13 +30,12 @@ public class TestController {
 
     @RequestMapping("/users")
     public List<User> list(){
-        int a = 1 / 0;
+        //int a = 1 / 0;
         return userService.list();
     }
 
     @RequestMapping("/val")
-    public Result<Boolean> login(@Valid LoginVo vo){
-        int a = 1/0;
+    public Result<Boolean> login(@Valid @RequestBody LoginVo vo){
         return Result.success(Boolean.TRUE);
     }
 

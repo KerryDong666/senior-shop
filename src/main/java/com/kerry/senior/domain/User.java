@@ -1,7 +1,5 @@
 package com.kerry.senior.domain;
 
-import javax.validation.constraints.Min;
-
 /**
  * @author
  * @date 2017/9/15
@@ -11,7 +9,7 @@ public class User {
     private String username;
     private String password;
     //表单验证
-    @Min(value = 10,message = "不符合的成员类型")
+    //@Min(value = 10,message = "不符合的成员类型")
     private int type;
 
     public User() {

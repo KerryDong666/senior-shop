@@ -5,7 +5,7 @@
 
 	<groupId>com.kerry</groupId>
 	<artifactId>senior</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>senoir</name>
@@ -139,6 +139,19 @@
 			<artifactId>commons-codec</artifactId>
 		</dependency>
 
+		<!--swagger2:自动生成api文档-->
+		<!--<dependency>
+			<groupId>com.spring4all</groupId>
+			<artifactId>spring-boot-starter-swagger</artifactId>
+			<version>LATEST</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>RELEASE</version>
+		</dependency>-->
+
 	</dependencies>
 
 	<build>
@@ -149,6 +162,7 @@
 				<version>1.5.8.RELEASE</version>
 			</plugin>
 		</plugins>
+
 	</build>
 
 </project>

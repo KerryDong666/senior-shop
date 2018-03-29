@@ -1,12 +1,9 @@
 package com.kerry.senior;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -32,13 +29,21 @@ public class SeniorApplication {
     /**
      * 使用druid数据源管理事务
      */
-    @Bean
-    public PlatformTransactionManager tx(DruidDataSource druidDataSource) {
-        return new DataSourceTransactionManager(druidDataSource);
-    }
-
-    @Bean
-    public DruidDataSource druidDataSource() {
-        return new DruidDataSource();
-    }
+    //@Bean
+    //public PlatformTransactionManager tx(DruidDataSource druidDataSource) {
+    //    return new DataSourceTransactionManager(druidDataSource);
+    //}
+    //
+    //@Bean
+    //public DruidDataSource druidDataSource() {
+    //    return new DruidDataSource();
+    //}
+    //
+    //@Bean
+    //public SqlSessionFactory SqlSessionFactory(DruidDataSource dataSource) throws Exception {
+    //    final SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
+    //    sessionFactoryBean.setDataSource(dataSource);
+    //    //sessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MAPPER_LOCAL));
+    //    return sessionFactoryBean.getObject();
+    //}
 }

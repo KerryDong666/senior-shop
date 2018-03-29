@@ -1,9 +1,11 @@
 package com.kerry.senior.result;
 
+import java.util.Collections;
+
 public class Result<T> {
     private int code;
     private String msg;
-    private T data;
+    private T data = (T) Collections.EMPTY_MAP;
 
     /**
      * 成功时候的调用
