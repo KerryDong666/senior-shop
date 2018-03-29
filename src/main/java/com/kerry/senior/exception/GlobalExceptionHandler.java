@@ -5,7 +5,10 @@ import com.kerry.senior.result.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,7 +34,13 @@ public class GlobalExceptionHandler {
             ObjectError error = errors.get(0);
             String msg = error.getDefaultMessage();
             return Result.error(CodeMsg.BIND_ERROR.fillArgs(msg));
-        }else { //其他异常类型返回服务异常
+        }else if (e instanceof MethodArgumentNotValidException){ //其他异常类型返回服务异常
+            MethodArgumentNotValidException ex = (MethodArgumentNotValidException)e;
+            BindingResult bindingResult = ex.getBindingResult();
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+            String msg = fieldErrors.get(0).getDefaultMessage();
+            return Result.error(CodeMsg.BIND_ERROR.fillArgs(msg));
+        }else {
             return Result.error(CodeMsg.SERVER_ERROR);
         }
     }

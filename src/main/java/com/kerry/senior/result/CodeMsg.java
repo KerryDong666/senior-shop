@@ -9,7 +9,8 @@ public class CodeMsg {
 	public static CodeMsg SERVER_ERROR = new CodeMsg(500100, "服务端异常");
     public static CodeMsg BIND_ERROR = new CodeMsg(500101, "参数校验异常:%s");
 	//登录模块 5002XX
-	
+    public static CodeMsg MOBILE_HAS_REGISTER = new CodeMsg(500201, "该手机号已经注册,不能重复注册");
+
 	//商品模块 5003XX
 	
 	//订单模块 5004XX
