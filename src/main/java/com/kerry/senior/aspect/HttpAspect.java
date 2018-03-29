@@ -43,14 +43,6 @@ public class HttpAspect {
         //Method[] methods = joinPoint.getTarget().getClass().getMethods();
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         Method method = methodSignature.getMethod();
-        //RequireLogin1 annotation = method.getAnnotation(RequireLogin1.class);
-        //if (annotation != null) {
-        //    System.out.println("存在注解");
-        //    String value = annotation.value();
-        //    System.out.println(value);
-        //}else {
-        //    System.out.println("不存在");
-        //}
     }
 
     @AfterThrowing(throwing = "ex", pointcut = "log()")
@@ -61,7 +53,6 @@ public class HttpAspect {
         Object[] args = joinPoint.getArgs(); //参数
         String methodName = signature.getName(); //方法名
         String className = signature.getDeclaringTypeName();
-        //url.method,ip,类方法,参数
         logger.error("类 = {}, 方法={}, err = {}", className, methodName, ex.getStackTrace());
 
     }
