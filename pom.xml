@@ -8,7 +8,7 @@
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>senoir</name>
+	<name>senior</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -106,6 +106,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.alibaba.boot</groupId>
+			<artifactId>dubbo-spring-boot-starter</artifactId>
+			<version>0.1.0</version>
+		</dependency>
+
 		<!--mysql连接驱动-->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -164,5 +170,18 @@
 		</plugins>
 
 	</build>
+
+	<repositories>
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 </project>

@@ -21,7 +21,4 @@ public class MD5 {
         return DigestUtils.md5Hex(src.concat(salt));
     }
 
-    public static void main(String[] args) {
-
-    }
 }

@@ -3,6 +3,7 @@ package com.kerry.senior.controller;
 import com.kerry.senior.result.Result;
 import com.kerry.senior.service.CustomerService;
 import com.kerry.senior.vo.CustomerRegisterVo;
+import com.kerry.senior.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,6 @@ import javax.validation.Valid;
 
 /**
  * @author CP_dongchuan
- * @date 2018/3/29
  */
 @Controller
 @RequestMapping("customer")
@@ -27,5 +27,11 @@ public class CustomerController {
     @ResponseBody
     public Result register(@Valid @RequestBody CustomerRegisterVo vo){
         return Result.success(customerService.register(vo));
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public Result login(@Valid @RequestBody LoginVo vo){
+        return Result.success(customerService.login(vo));
     }
 }

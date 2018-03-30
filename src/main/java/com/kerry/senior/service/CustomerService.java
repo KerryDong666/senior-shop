@@ -2,6 +2,7 @@ package com.kerry.senior.service;
 
 import com.kerry.senior.domain.Customer;
 import com.kerry.senior.vo.CustomerRegisterVo;
+import com.kerry.senior.vo.LoginVo;
 
 /**
  * @author CP_dongchuan
@@ -11,6 +12,6 @@ public interface CustomerService {
 
     int register(CustomerRegisterVo vo);
 
-    Customer login(Customer customer);
+    Customer login(LoginVo vo);
 
 }

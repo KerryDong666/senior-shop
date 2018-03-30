@@ -9,6 +9,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 @SpringBootApplication
 @EnableTransactionManagement //开启事务支持
+//@EnableDubboConfig //开启dubbo微服务
 public class SeniorApplication {
 
     public static void main(String[] args) {
@@ -26,24 +27,4 @@ public class SeniorApplication {
         return registration;
     }
 
-    /**
-     * 使用druid数据源管理事务
-     */
-    //@Bean
-    //public PlatformTransactionManager tx(DruidDataSource druidDataSource) {
-    //    return new DataSourceTransactionManager(druidDataSource);
-    //}
-    //
-    //@Bean
-    //public DruidDataSource druidDataSource() {
-    //    return new DruidDataSource();
-    //}
-    //
-    //@Bean
-    //public SqlSessionFactory SqlSessionFactory(DruidDataSource dataSource) throws Exception {
-    //    final SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
-    //    sessionFactoryBean.setDataSource(dataSource);
-    //    //sessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MAPPER_LOCAL));
-    //    return sessionFactoryBean.getObject();
-    //}
 }

@@ -2,11 +2,13 @@ package com.kerry.senior.service.impl;
 
 import com.kerry.senior.domain.Customer;
 import com.kerry.senior.exception.GlobalException;
+import com.kerry.senior.exception.LoginException;
 import com.kerry.senior.mapper.CustomerMapper;
 import com.kerry.senior.result.CodeMsg;
 import com.kerry.senior.service.CustomerService;
 import com.kerry.senior.util.MD5;
 import com.kerry.senior.vo.CustomerRegisterVo;
+import com.kerry.senior.vo.LoginVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,7 +50,17 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer login(Customer customer) {
-        return null;
+    public Customer login(LoginVo vo) {
+        if (vo == null) {
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
+        }
+        Customer customer = customerMapper.queryByMobile(vo.getMobilePhone());
+        if (customer == null) {
+            throw new LoginException(CodeMsg.MOBILE_NON_REGISTER);
+        }
+        if (!MD5.md5(vo.getPassword(), customer.getSalt()).equals(customer.getPassword())) {
+            throw new LoginException(CodeMsg.PWD_ERROR);
+        }
+        return customer;
     }
 }
