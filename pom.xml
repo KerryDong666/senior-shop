@@ -145,6 +145,12 @@
 			<artifactId>commons-codec</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpasyncclient</artifactId>
+			<version>4.1.2</version>
+		</dependency>
+
 		<!--swagger2:自动生成api文档-->
 		<!--<dependency>
 			<groupId>com.spring4all</groupId>

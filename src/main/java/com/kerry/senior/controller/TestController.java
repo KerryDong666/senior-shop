@@ -20,8 +20,12 @@ import java.util.List;
 @RestController
 public class TestController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public TestController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping("/hello.do")
     public String hello(){
@@ -35,7 +39,7 @@ public class TestController {
     }
 
     @RequestMapping("/val")
-    public Result<Boolean> login(@Valid @RequestBody LoginVo vo){
+    public Result login(@Valid @RequestBody LoginVo vo){
         return Result.success(Boolean.TRUE);
     }
 

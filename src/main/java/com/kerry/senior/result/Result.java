@@ -2,26 +2,26 @@ package com.kerry.senior.result;
 
 import java.util.Collections;
 
-public class Result<T> {
+public class Result {
     private int code;
     private String msg;
-    private T data = (T) Collections.EMPTY_MAP;
+    private Object data = Collections.EMPTY_MAP;
 
     /**
      * 成功时候的调用
      */
-    public static <T> Result<T> success(T data) {
-        return new Result<T>(data);
+    public static Result success(Object data) {
+        return new Result(data);
     }
 
     /**
      * 失败时候的调用
      */
-    public static <T> Result<T> error(CodeMsg cm) {
-        return new Result<T>(cm);
+    public static  Result error(CodeMsg cm) {
+        return new Result(cm);
     }
 
-    private Result(T data) {
+    private Result(Object data) {
         this.code = 0;
         this.msg = "success";
         this.data = data;
@@ -43,7 +43,7 @@ public class Result<T> {
         return msg;
     }
 
-    public T getData() {
+    public Object getData() {
         return data;
     }
 }

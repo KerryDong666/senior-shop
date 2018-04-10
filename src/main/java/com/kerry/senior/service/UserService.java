@@ -14,4 +14,5 @@ public interface UserService {
 
     int insert(User user);
 
+    User get(Long id);
 }

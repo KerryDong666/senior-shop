@@ -36,11 +36,6 @@ public class JedisConfig {
     @Value("${spring.redis.timeout}")
     private long timeout;
 
-    //public static void main(String[] args) {
-    //    JedisPoolConfig config = new JedisPoolConfig();
-    //    config.setMaxIdle(maxIdle);
-    //}
-
     @Bean
     public JedisPoolConfig getJedisPoolConfig(){
         JedisPoolConfig config = new JedisPoolConfig();
@@ -53,9 +48,7 @@ public class JedisConfig {
 
     @Bean
     public JedisPool getJedisPool(JedisPoolConfig config){
-        System.out.println("JedisPoolConfig = " + config);
-        JedisPool pool = new JedisPool(config,host,port,(int) timeout,password);
-        return pool;
+        return new JedisPool(config,host,port,(int) timeout,password);
     }
 
 

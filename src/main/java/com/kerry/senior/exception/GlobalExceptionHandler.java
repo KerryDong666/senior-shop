@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
     private static Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(value=Exception.class)
-	public Result<String> exceptionHandler(HttpServletRequest request, Exception e){
+	public Result exceptionHandler(HttpServletRequest request, Exception e){
         e.printStackTrace();
         //检查各种异常并返回对应的错误信息(可根据需要修改)
         if(e instanceof GlobalException) { //自定义全局校验

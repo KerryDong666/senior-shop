@@ -4,7 +4,7 @@ Navicat MySQL Data Transfer
 Source Server         : springboot
 Source Server Version : 50527
 Source Host           : localhost:3306
-Source Database       : miaosha
+Source Database       : seckill
 
 Target Server Type    : MYSQL
 Target Server Version : 50527
@@ -37,13 +37,13 @@ INSERT INTO `goods` VALUES ('1', 'iphoneX', 'Apple iphoneX 手机', '/img/iphone
 INSERT INTO `goods` VALUES ('2', '华为9', 'Mate 9 4GB', '/img/meta10.png', '华为9 月光银 全网通双卡双待', '3212.00', '10000');
 
 -- ----------------------------
--- Table structure for miaosha_goods
+-- Table structure for seckill_goods
 -- ----------------------------
-DROP TABLE IF EXISTS `miaosha_goods`;
-CREATE TABLE `miaosha_goods` (
+DROP TABLE IF EXISTS `seckill_goods`;
+CREATE TABLE `seckill_goods` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '秒杀的商品表',
   `goods_id` bigint(20) DEFAULT NULL,
-  `miaosha_price` decimal(10,2) DEFAULT NULL COMMENT '秒杀单价',
+  `seckill_price` decimal(10,2) DEFAULT NULL COMMENT '秒杀单价',
   `stock_count` int(11) DEFAULT NULL COMMENT '库存数量',
   `start_date` datetime DEFAULT NULL COMMENT '秒杀开始时间',
   `end_date` datetime DEFAULT NULL COMMENT '秒杀结束时间',
@@ -51,16 +51,16 @@ CREATE TABLE `miaosha_goods` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of miaosha_goods
+-- Records of seckill_goods
 -- ----------------------------
-INSERT INTO `miaosha_goods` VALUES ('1', '1', '0.01', '5', '2018-01-29 18:47:00', '2018-02-10 18:50:00');
-INSERT INTO `miaosha_goods` VALUES ('2', '2', '0.01', '9', '2017-11-12 00:00:00', '2018-01-31 20:00:00');
+INSERT INTO `seckill_goods` VALUES ('1', '1', '0.01', '5', '2018-01-29 18:47:00', '2018-02-10 18:50:00');
+INSERT INTO `seckill_goods` VALUES ('2', '2', '0.01', '9', '2017-11-12 00:00:00', '2018-01-31 20:00:00');
 
 -- ----------------------------
--- Table structure for miaosha_order
+-- Table structure for seckill_order
 -- ----------------------------
-DROP TABLE IF EXISTS `miaosha_order`;
-CREATE TABLE `miaosha_order` (
+DROP TABLE IF EXISTS `seckill_order`;
+CREATE TABLE `seckill_order` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '秒杀订单表',
   `user_id` bigint(20) DEFAULT NULL COMMENT '用户id',
   `order_id` bigint(20) DEFAULT NULL COMMENT '商品id',
@@ -70,9 +70,9 @@ CREATE TABLE `miaosha_order` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of miaosha_order
+-- Records of seckill_order
 -- ----------------------------
-INSERT INTO `miaosha_order` VALUES ('4', '18348671077', '4', '1');
+INSERT INTO `seckill_order` VALUES ('4', '18348671077', '4', '1');
 
 -- ----------------------------
 -- Table structure for customer
@@ -83,9 +83,9 @@ CREATE TABLE `customer` (
   `mobile_phone` varchar(11) DEFAULT NULL COMMENT '手机号码',
   `nickname` varchar(255) NOT NULL COMMENT '登录昵称',
   `password` varchar(32) DEFAULT NULL COMMENT 'MD5(pass明文+固定salt)',
-  `salt` varchar(10) DEFAULT NULL,
+  `salt` varchar(32) DEFAULT NULL,
   `head` varchar(128) DEFAULT NULL COMMENT '头像，云存储的id',
-  `register_date` datetime DEFAULT NULL COMMENT '注册时间'
+  `register_date` datetime DEFAULT NULL COMMENT '注册时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

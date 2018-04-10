@@ -96,6 +96,9 @@ public class RedisUtil {
         return set(key, value, expireSeconds);
     }
 
+    /**
+     * 获取jedis信息
+     */
     private Jedis getJedis() {
         Jedis jedis = null;
         try {
@@ -106,6 +109,9 @@ public class RedisUtil {
         return jedis;
     }
 
+    /**
+     * 关闭jedis连接
+     */
     private void returnResource(Jedis jedis) {
         if (jedis != null) {
             jedis.close();

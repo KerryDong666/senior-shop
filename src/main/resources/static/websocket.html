@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>websocket+springboot</title>
+</head>
+<body>
+	<p id="text"></p>
+</body>
+<script>
+    var websocket = null;
+    if ('WebSocket' in window) {
+        websocket = new WebSocket('ws://localhost:8080/webSocket/10003');
+    }else {
+        alert('该浏览器不支持websocket');
+    }
+    //建立连接
+    websocket.onopen = function (event) {
+        console.debug("建立连接");
+    }
+    //关闭连接
+    websocket.onclose = function (event) {
+        console.debug("关闭连接")
+    }
+    //接收后台数据
+    websocket.onmessage = function (event) {
+//        alert("收到消息:" + event.data)
+	    document.getElementById('text').innerText = event.data;
+    }
+    //异常
+    websocket.onerror = function () {
+        alert("websocket通信发生异常");
+    }
+    //关闭客户端时关闭websocket连接
+    window.onbeforeunload = function () {
+        websocket.close();
+    }
+</script>
+</html>

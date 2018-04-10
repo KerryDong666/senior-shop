@@ -4,16 +4,22 @@ import com.kerry.senior.domain.Customer;
 import com.kerry.senior.exception.GlobalException;
 import com.kerry.senior.exception.LoginException;
 import com.kerry.senior.mapper.CustomerMapper;
+import com.kerry.senior.redis.RedisConstant;
+import com.kerry.senior.redis.RedisUtil;
 import com.kerry.senior.result.CodeMsg;
 import com.kerry.senior.service.CustomerService;
 import com.kerry.senior.util.MD5;
+import com.kerry.senior.util.UUIDUtil;
 import com.kerry.senior.vo.CustomerRegisterVo;
 import com.kerry.senior.vo.LoginVo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 /**
@@ -23,8 +29,17 @@ import java.util.Date;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
+    private final CustomerMapper customerMapper;
+
+    private final RedisUtil redisUtil;
+
+    private static final int COOKIE_EXPIRE_SECONDS = 3600 * 24 * 2;
+
     @Autowired
-    private CustomerMapper customerMapper;
+    public CustomerServiceImpl(CustomerMapper customerMapper, RedisUtil redisUtil) {
+        this.customerMapper = customerMapper;
+        this.redisUtil = redisUtil;
+    }
 
     @Override
     @Transactional
@@ -50,17 +65,44 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer login(LoginVo vo) {
+    public Customer login(LoginVo vo, HttpServletResponse response) {
         if (vo == null) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
         Customer customer = customerMapper.queryByMobile(vo.getMobilePhone());
+        //验证手机号是否已经注册
         if (customer == null) {
             throw new LoginException(CodeMsg.MOBILE_NON_REGISTER);
         }
+        //验证密码
         if (!MD5.md5(vo.getPassword(), customer.getSalt()).equals(customer.getPassword())) {
             throw new LoginException(CodeMsg.PWD_ERROR);
         }
+        //生成token,添加cookie
+        addCookie(response, customer);
         return customer;
+    }
+
+    @Override
+    public Customer getCustomerByToken(HttpServletResponse response, String token) {
+        if (StringUtils.isBlank(token)) {
+            return null;
+        }
+        Customer customer = redisUtil.get(token, Customer.class);
+        //延长有效期
+        if (customer != null) {
+            addCookie(response, customer);
+        }
+        return customer;
+    }
+
+    private void addCookie(HttpServletResponse response, Customer customer) {
+        String token = UUIDUtil.getUuid();
+        redisUtil.set(token, customer, COOKIE_EXPIRE_SECONDS);
+        //设置cookie
+        Cookie cookie = new Cookie(RedisConstant.USER_COOKIE_NAME, token);
+        cookie.setMaxAge(COOKIE_EXPIRE_SECONDS);
+        cookie.setPath("/");
+        response.addCookie(cookie);
     }
 }
