@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kerry.senior.mapper.GoodsMapper">
+	<!--减少商品库存-->
+	<update id="reduceStock">
+		update seckill_goods set stock_count = stock_count - 1 where goods_id = #{goodsId}
+	</update>
+
+	<select id="listGoodsVo" resultType="com.kerry.senior.vo.GoodsVo">
+		select a.*, b.seckill_price,b.stock_count, b.start_date, b.end_date from goods a left join seckill_goods b on a.id = b.goods_id;
+	</select>
+	<select id="queryGoodsVoByGoodsId" resultType="com.kerry.senior.vo.GoodsVo">
+		select a.*, b.seckill_price,b.stock_count, b.start_date, b.end_date from goods a left join seckill_goods b on a.id = b.goods_id where a.id = #{goodsId};
+	</select>
+
+</mapper>

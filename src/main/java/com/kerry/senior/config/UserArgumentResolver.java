@@ -1,8 +1,9 @@
 package com.kerry.senior.config;
 
-import com.kerry.senior.domain.Customer;
 import com.kerry.senior.redis.RedisConstant;
 import com.kerry.senior.service.CustomerService;
+import com.kerry.senior.util.CookieUtil;
+import com.kerry.senior.util.CurrentUser;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -24,19 +25,22 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
 	@Autowired
 	private CustomerService customerService;
-	
+
+    /**
+     * 只对Controller中使用了@CurrentUser注解的参数进行自动获取
+     * @param parameter
+     * @return
+     */
 	public boolean supportsParameter(MethodParameter parameter) {
-		Class<?> clazz = parameter.getParameterType();
-		return clazz==Customer.class;
+		return parameter.getParameterAnnotation(CurrentUser.class) != null;
 	}
 
 	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
 			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 		HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
 		HttpServletResponse response = webRequest.getNativeResponse(HttpServletResponse.class);
-		
 		String paramToken = request.getParameter(RedisConstant.USER_COOKIE_NAME);
-		String cookieToken = this.getCookieValue(request, RedisConstant.USER_COOKIE_NAME);
+		String cookieToken = CookieUtil.getCookieValue(request, RedisConstant.USER_COOKIE_NAME);
 		if(StringUtils.isEmpty(cookieToken) && StringUtils.isEmpty(paramToken)) {
 			return null;
 		}
@@ -44,10 +48,10 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 		return customerService.getCustomerByToken(response, token);
 	}
 
-	private String getCookieValue(HttpServletRequest request, String cookiName) {
+	private String getCookieValue(HttpServletRequest request, String cookieName) {
 		Cookie[]  cookies = request.getCookies();
 		for(Cookie cookie : cookies) {
-			if(cookie.getName().equals(cookiName)) {
+			if(cookie.getName().equals(cookieName)) {
 				return cookie.getValue();
 			}
 		}

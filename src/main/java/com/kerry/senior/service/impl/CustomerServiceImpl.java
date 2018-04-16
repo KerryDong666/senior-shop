@@ -79,7 +79,8 @@ public class CustomerServiceImpl implements CustomerService {
             throw new LoginException(CodeMsg.PWD_ERROR);
         }
         //生成token,添加cookie
-        addCookie(response, customer);
+        String token = UUIDUtil.getUuid();
+        addCookie(response, customer, token);
         return customer;
     }
 
@@ -91,13 +92,12 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = redisUtil.get(token, Customer.class);
         //延长有效期
         if (customer != null) {
-            addCookie(response, customer);
+            addCookie(response, customer, token);
         }
         return customer;
     }
 
-    private void addCookie(HttpServletResponse response, Customer customer) {
-        String token = UUIDUtil.getUuid();
+    private void addCookie(HttpServletResponse response, Customer customer, String token) {
         redisUtil.set(token, customer, COOKIE_EXPIRE_SECONDS);
         //设置cookie
         Cookie cookie = new Cookie(RedisConstant.USER_COOKIE_NAME, token);

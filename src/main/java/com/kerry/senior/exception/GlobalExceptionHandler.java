@@ -40,6 +40,9 @@ public class GlobalExceptionHandler {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
             String msg = fieldErrors.get(0).getDefaultMessage();
             return Result.error(CodeMsg.BIND_ERROR.fillArgs(msg));
+        }else if(e instanceof ParamMissingException){
+            ParamMissingException ex = (ParamMissingException)e;
+            return Result.error(ex.getCm());
         }else {
             return Result.error(CodeMsg.SERVER_ERROR);
         }
