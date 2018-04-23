@@ -1,5 +1,6 @@
 package com.kerry.senior.mq;
 
+import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -47,6 +48,13 @@ public class MQSender {
 		amqpTemplate.convertAndSend(MQConfig.HEADERS_EXCHANGE, "", obj);
 	}
 
-	
-	
+
+    /**
+     * 异步下单,秒杀生产者
+     * @param sm
+     */
+    public void seckill(SeckillMessage sm) {
+        log.info("秒杀异步下单开始");
+        amqpTemplate.convertAndSend(MQConfig.SECKILL_QUEUE, JSON.toJSONString(sm));
+    }
 }

@@ -12,5 +12,8 @@
 	<select id="queryGoodsVoByGoodsId" resultType="com.kerry.senior.vo.GoodsVo">
 		select a.*, b.seckill_price,b.stock_count, b.start_date, b.end_date from goods a left join seckill_goods b on a.id = b.goods_id where a.id = #{goodsId};
 	</select>
+	<select id="getGoodsVoStockByGoodsId" resultType="java.lang.Integer">
+		select stock_count from seckill_goods where id = #{goodsId};
+	</select>
 
 </mapper>

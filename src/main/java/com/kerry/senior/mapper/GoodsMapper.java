@@ -32,4 +32,11 @@ public interface GoodsMapper {
      * @param seckillGoods
      */
     int reduceStock(SeckillGoods seckillGoods);
+
+    /**
+     * 获取秒杀商品库存
+     * @param goodsId
+     * @return
+     */
+    Integer getGoodsVoStockByGoodsId(Long goodsId);
 }

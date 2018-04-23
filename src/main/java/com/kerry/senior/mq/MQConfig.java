@@ -38,6 +38,10 @@ public class MQConfig {
 	public Queue topicQueue2() {
 		return new Queue(TOPIC_QUEUE2, true);
 	}
+    @Bean
+    public Queue seckill() {
+        return new Queue(SECKILL_QUEUE, true);
+    }
 
     /**
      * 交换机

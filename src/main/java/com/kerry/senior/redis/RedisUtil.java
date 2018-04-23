@@ -12,6 +12,7 @@ import redis.clients.jedis.JedisPool;
 
 /**
  * Redis工具类
+ *
  * @author CP_dongchuan
  * @date 2018/3/27
  */
@@ -30,7 +31,8 @@ public class RedisUtil {
 
     /**
      * 通过key获取value值对象
-     * @param key k
+     *
+     * @param key       k
      * @param valueType 需要获取的对象字节码类型
      * @return value对象
      */
@@ -59,8 +61,8 @@ public class RedisUtil {
 
     /**
      * redis数据库的set操作:
-     *      如果保存的对象不是String,则先转换为jsonString再保存,而不是直接保存对象,
-     *      减少序列化和反序列化的性能开销
+     * 如果保存的对象不是String,则先转换为jsonString再保存,而不是直接保存对象,
+     * 减少序列化和反序列化的性能开销
      */
     public <T> boolean set(String key, T value, int expireSeconds) {
         if (StringUtils.isBlank(key) || value == null) {
@@ -110,6 +112,33 @@ public class RedisUtil {
     }
 
     /**
+     * 减少值
+     */
+    public Long decr(String key) {
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            return jedis.decr(key);
+        } finally {
+            returnResource(jedis);
+        }
+    }
+
+    /**
+     * 判断key是否存在
+     */
+    public boolean exists(String key) {
+        Jedis jedis = null;
+        try {
+            jedis =  jedisPool.getResource();
+            //生成真正的key
+            return  jedis.exists(key);
+        }finally {
+            returnResource(jedis);
+        }
+    }
+
+    /**
      * 关闭jedis连接
      */
     private void returnResource(Jedis jedis) {
@@ -117,4 +146,5 @@ public class RedisUtil {
             jedis.close();
         }
     }
+
 }

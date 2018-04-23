@@ -8,11 +8,11 @@ import com.kerry.senior.result.Result;
 import com.kerry.senior.service.CustomerService;
 import com.kerry.senior.service.GoodsService;
 import com.kerry.senior.service.OrderService;
+import com.kerry.senior.util.CurrentUser;
 import com.kerry.senior.vo.GoodsVo;
 import com.kerry.senior.vo.OrderDetailVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,8 +35,7 @@ public class OrderController {
 	
     @RequestMapping("/detail")
     @ResponseBody
-    public Result info(Model model, Customer user,
-                                      @RequestParam("orderId") Long orderId) {
+    public Result info(@CurrentUser Customer user, @RequestParam("orderId") Long orderId) {
     	if(user == null) {
     		return Result.error(CodeMsg.SESSION_ERROR);
     	}

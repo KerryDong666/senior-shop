@@ -141,64 +141,63 @@ public class GoodsController {
     //    return "goods_detail";
     //}
 
-    /**
-     * 优化二:URL缓存
-     *    跳转到商品详情页
-     * @param model
-     * @param user
-     * @param goodsId
-     * @return
-     */
-    @RequestMapping(value = "/to_detail2/{goodsId}", produces = "text/html")
-    @ResponseBody
-    public String detail2(HttpServletRequest request, HttpServletResponse response, Model model, @CurrentUser Customer user, @PathVariable("goodsId")long goodsId) {
-        //取数据
-        String html = redisUtil.get(RedisKey.GOODS_PAGE+goodsId);
-        if (StringUtils.isNotBlank(html)) {
-            return html;
-        }
-        model.addAttribute("user", user);
-        GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);
-        model.addAttribute("goods", goods);
-        long startAt = goods.getStartDate().getTime();
-        long endAt = goods.getEndDate().getTime();
-        long now = System.currentTimeMillis();
-
-        int seckillStatus = 0;
-        int remainSeconds = 0;
-        if (now < startAt) {//秒杀还没开始，倒计时
-            seckillStatus = 0;
-            remainSeconds = (int) ((startAt - now) / 1000);
-        } else if (now > endAt) {//秒杀已经结束
-            seckillStatus = 2;
-            remainSeconds = -1;
-        } else {//秒杀进行中
-            seckillStatus = 1;
-            remainSeconds = 0;
-        }
-        model.addAttribute("seckillStatus", seckillStatus);
-        model.addAttribute("remainSeconds", remainSeconds);
-        //手动渲染
-        SpringWebContext ctx = new SpringWebContext(request,response,
-                request.getServletContext(),request.getLocale(), model.asMap(), appcxt);
-        html = thymeleafViewResolver.getTemplateEngine().process("goods_detail", ctx);
-        if (StringUtils.isNotBlank(html)) {
-            redisUtil.setStringValue(RedisKey.GOODS_PAGE + goodsId, html, RedisConstant.GOODS_PAGE_EXPIRE);
-        }
-        return html;
-    }
+    ///**
+    // * 优化二:URL缓存
+    // *    跳转到商品详情页
+    // * @param model
+    // * @param user
+    // * @param goodsId
+    // * @return
+    // */
+    //@RequestMapping(value = "/to_detail2/{goodsId}", produces = "text/html")
+    //@ResponseBody
+    //public String detail2(HttpServletRequest request, HttpServletResponse response, Model model, @CurrentUser Customer user, @PathVariable("goodsId")long goodsId) {
+    //    //取数据
+    //    String html = redisUtil.get(RedisKey.GOODS_PAGE+goodsId);
+    //    if (StringUtils.isNotBlank(html)) {
+    //        return html;
+    //    }
+    //    model.addAttribute("user", user);
+    //    GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);
+    //    model.addAttribute("goods", goods);
+    //    long startAt = goods.getStartDate().getTime();
+    //    long endAt = goods.getEndDate().getTime();
+    //    long now = System.currentTimeMillis();
+    //
+    //    int seckillStatus = 0;
+    //    int remainSeconds = 0;
+    //    if (now < startAt) {//秒杀还没开始，倒计时
+    //        seckillStatus = 0;
+    //        remainSeconds = (int) ((startAt - now) / 1000);
+    //    } else if (now > endAt) {//秒杀已经结束
+    //        seckillStatus = 2;
+    //        remainSeconds = -1;
+    //    } else {//秒杀进行中
+    //        seckillStatus = 1;
+    //        remainSeconds = 0;
+    //    }
+    //    model.addAttribute("seckillStatus", seckillStatus);
+    //    model.addAttribute("remainSeconds", remainSeconds);
+    //    //手动渲染
+    //    SpringWebContext ctx = new SpringWebContext(request,response,
+    //            request.getServletContext(),request.getLocale(), model.asMap(), appcxt);
+    //    html = thymeleafViewResolver.getTemplateEngine().process("goods_detail", ctx);
+    //    if (StringUtils.isNotBlank(html)) {
+    //        redisUtil.setStringValue(RedisKey.GOODS_PAGE + goodsId, html, RedisConstant.GOODS_PAGE_EXPIRE);
+    //    }
+    //    return html;
+    //}
 
     /**
      * 优化三:页面静态化(静态页面+ajax请求)
      *    跳转到商品详情页
-     * @param model
      * @param user
      * @param goodsId
      * @return
      */
     @RequestMapping(value = "/to_detail/{goodsId}")
     @ResponseBody
-    public Result detail(HttpServletRequest request, HttpServletResponse response, Model model, @CurrentUser Customer user, @PathVariable("goodsId")long goodsId) {
+    public Result detail(@CurrentUser Customer user, @PathVariable("goodsId")long goodsId) {
         GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);
         long startAt = goods.getStartDate().getTime();
         long endAt = goods.getEndDate().getTime();

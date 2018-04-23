@@ -9,4 +9,6 @@ import com.kerry.senior.vo.GoodsVo; /**
 public interface SeckillService {
 
     OrderInfo seckill(Customer user, GoodsVo goods);
+
+    Long getSeckillResult(Long id, long goodsId);
 }

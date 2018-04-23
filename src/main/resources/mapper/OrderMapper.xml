@@ -17,4 +17,5 @@
 	<select id="getOrderById" resultType="com.kerry.senior.domain.OrderInfo">
 		select * from order_info where id = #{orderId};
 	</select>
+	<!---->
 </mapper>

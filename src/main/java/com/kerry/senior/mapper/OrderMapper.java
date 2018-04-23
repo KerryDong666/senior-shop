@@ -20,4 +20,5 @@ public interface OrderMapper {
     int insertSeckillOrder(SeckillOrder seckillOrder);
 
     OrderInfo getOrderById(Long orderId);
+
 }

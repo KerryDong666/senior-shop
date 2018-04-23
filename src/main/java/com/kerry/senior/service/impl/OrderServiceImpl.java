@@ -56,4 +56,9 @@ public class OrderServiceImpl implements OrderService{
         return orderMapper.getOrderById(orderId);
     }
 
+    @Override
+    public Long getSeckillResult(Long id, long goodsId) {
+        return null;
+    }
+
 }
