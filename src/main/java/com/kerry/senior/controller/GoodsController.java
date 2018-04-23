@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * @author CP_dongchuan
+ * @author Kerry Dong
  */
 @Controller
 @RequestMapping("/goods")

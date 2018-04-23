@@ -3,8 +3,7 @@ package com.kerry.senior.exception;
 import com.kerry.senior.result.CodeMsg;
 
 /**
- * @author CP_dongchuan
- * @date 2018/4/16
+ * @author Kerry Dong
  */
 public class ParamMissingException extends RuntimeException {
 

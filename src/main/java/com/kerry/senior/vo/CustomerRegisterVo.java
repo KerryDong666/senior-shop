@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * 用户注册对象
- * @author CP_dongchuan
+ * @author Kerry Dong
  */
 public class CustomerRegisterVo {
 

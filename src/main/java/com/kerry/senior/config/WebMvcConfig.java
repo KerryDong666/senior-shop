@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.util.List;
 
 /**
- * @author CP_dongchuan
+ * @author Kerry Dong
  */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter{

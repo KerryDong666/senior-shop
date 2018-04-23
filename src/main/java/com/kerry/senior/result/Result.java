@@ -1,7 +1,9 @@
 package com.kerry.senior.result;
 
 import java.util.Collections;
-
+/**
+ * @author Kerry Dong
+ */
 public class Result {
     private int code;
     private String msg;

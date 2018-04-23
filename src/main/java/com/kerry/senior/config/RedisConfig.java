@@ -20,8 +20,7 @@ import java.lang.reflect.Method;
 
 /**
  * 注解式环境管理
- * @author CP_dongchuan
- * @date 2018/4/18
+ * @author Kerry Dong
  */
 @Configuration
 @EnableCaching

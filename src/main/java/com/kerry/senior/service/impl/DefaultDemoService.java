@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.kerry.senior.service.DubboDemo;
 
 /**
- * @author CP_dongchuan
+ * @author Kerry Dong
  * @date 2018/3/30
  */
 @Service(

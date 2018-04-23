@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * @author CP_dongchuan
+ * @author Kerry Dong
  */
 @Component
 @ServerEndpoint("/webSocket/{userId}")

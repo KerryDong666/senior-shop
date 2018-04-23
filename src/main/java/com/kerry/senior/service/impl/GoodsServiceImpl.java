@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author CP_dongchuan
+ * @author Kerry Dong
  */
 @Service
 @CacheConfig(cacheNames = "goods")

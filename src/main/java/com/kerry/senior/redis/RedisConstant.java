@@ -1,8 +1,7 @@
 package com.kerry.senior.redis;
 
 /**
- * @author CP_dongchuan
- * @date 2018/4/10
+ * @author Kerry Dong
  */
 public class RedisConstant {
 

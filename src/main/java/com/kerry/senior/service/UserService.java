@@ -5,8 +5,7 @@ import com.kerry.senior.domain.User;
 import java.util.List;
 
 /**
- * @author CP_dongchuan
- * @date 2018/3/28
+ * @author Kerry Dong
  */
 public interface UserService {
 

@@ -1,5 +1,7 @@
 package com.kerry.senior.result;
-
+/**
+ * @author Kerry Dong
+ */
 public class CodeMsg {
 	private int code;
 	private String msg;

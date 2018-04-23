@@ -3,8 +3,7 @@ package com.kerry.senior.vo;
 import com.kerry.senior.domain.OrderInfo;
 
 /**
- * @author CP_dongchuan
- * @date 2018/4/23
+ * @author Kerry Dong
  */
 public class OrderDetailVo {
 

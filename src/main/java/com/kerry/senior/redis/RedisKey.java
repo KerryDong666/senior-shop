@@ -2,7 +2,7 @@ package com.kerry.senior.redis;
 
 /**
  * 管理redis-key的常量类
- * @author CP_dongchuan
+ * @author Kerry Dong
  */
 public class RedisKey {
 

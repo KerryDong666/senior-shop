@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author CP_dongchuan
+ * @author Kerry Dong
  */
 @Repository
 @Mapper

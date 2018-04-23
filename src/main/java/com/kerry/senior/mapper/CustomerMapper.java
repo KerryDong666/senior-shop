@@ -4,8 +4,7 @@ import com.kerry.senior.domain.Customer;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @author CP_dongchuan
- * @date 2018/3/29
+ * @author Kerry Dong
  */
 @Mapper
 public interface CustomerMapper {

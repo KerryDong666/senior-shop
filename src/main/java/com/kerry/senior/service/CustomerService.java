@@ -7,8 +7,7 @@ import com.kerry.senior.vo.LoginVo;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author CP_dongchuan
- * @date 2018/3/29
+ * @author Kerry Dong
  */
 public interface CustomerService {
 

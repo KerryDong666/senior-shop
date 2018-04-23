@@ -8,8 +8,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 /**
- * @author CP_dongchuan
- * @date 2018/3/27
+ * @author Kerry Dong
  */
 @Configuration
 @PropertySource("classpath:application.properties")

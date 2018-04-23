@@ -3,8 +3,7 @@ package com.kerry.senior.mq;
 import com.kerry.senior.domain.Customer;
 
 /**
- * @author CP_dongchuan
- * @date 2018/4/23
+ * @author Kerry Dong
  */
 public class SeckillMessage {
 

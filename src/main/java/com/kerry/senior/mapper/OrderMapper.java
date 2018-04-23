@@ -6,8 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * @author CP_dongchuan
- * @date 2018/4/16
+ * @author Kerry Dong
  */
 @Mapper
 public interface OrderMapper {

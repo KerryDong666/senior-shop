@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 /**
- * @author CP_dongchuan
+ * @author Kerry Dong
  */
 @RestController
 @RequestMapping("/customer")

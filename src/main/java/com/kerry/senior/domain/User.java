@@ -1,7 +1,7 @@
 package com.kerry.senior.domain;
 
 /**
- * @author
+ * @author Kerry Dong
  * @date 2017/9/15
  */
 public class User {

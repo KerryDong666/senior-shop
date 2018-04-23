@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 校验token的拦截器
  *
- * @author CP_dongchuan
+ * @author Kerry Dong
  */
 @Component
 public class TokenCheckInterceptor extends HandlerInterceptorAdapter {

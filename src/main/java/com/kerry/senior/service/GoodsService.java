@@ -5,8 +5,7 @@ import com.kerry.senior.vo.GoodsVo;
 import java.util.List;
 
 /**
- * @author CP_dongchuan
- * @date 2018/4/10
+ * @author Kerry Dong
  */
 public interface GoodsService {
 

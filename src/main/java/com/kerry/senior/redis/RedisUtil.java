@@ -13,8 +13,7 @@ import redis.clients.jedis.JedisPool;
 /**
  * Redis工具类
  *
- * @author CP_dongchuan
- * @date 2018/3/27
+ * @author Kerry Dong
  */
 @Component
 public class RedisUtil {

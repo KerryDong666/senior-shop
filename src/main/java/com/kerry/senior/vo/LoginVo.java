@@ -6,8 +6,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
- * @author CP_dongchuan
- * @date 2018/3/28
+ * @author Kerry Dong
  */
 public class LoginVo {
 

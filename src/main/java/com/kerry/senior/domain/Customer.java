@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 会员实体(秒杀的用户)
- * @author CP_dongchuan
+ * @author Kerry Dong
  */
 public class Customer {
 

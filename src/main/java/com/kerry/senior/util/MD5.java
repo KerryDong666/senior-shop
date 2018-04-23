@@ -6,7 +6,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author CP_dongchuan
+ * @author Kerry Dong
  */
 public class MD5 {
 

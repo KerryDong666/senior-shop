@@ -3,8 +3,7 @@ package com.kerry.senior.util;
 import java.util.UUID;
 
 /**
- * @author CP_dongchuan
- * @date 2018/3/29
+ * @author Kerry Dong
  */
 public class UUIDUtil {
 

@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * 用于判断是否需要登录才能访问的注解,用在Controller中的方法上
- * @author CP_dongchuan
+ * @author Kerry Dong
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
