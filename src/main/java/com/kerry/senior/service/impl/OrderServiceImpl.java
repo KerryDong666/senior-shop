@@ -36,11 +36,11 @@ public class OrderServiceImpl implements OrderService{
 		orderInfo.setOrderChannel(1); //1pc,2android,3ios
 		orderInfo.setStatus(0); //新建未支付
 		orderInfo.setUserId(user.getId());
-		Long orderId = orderMapper.insert(orderInfo);
+		orderMapper.insert(orderInfo);
 		//创建抢购订单
         SeckillOrder seckillOrder = new SeckillOrder();
         seckillOrder.setGoodsId(goods.getId());
-        seckillOrder.setOrderId(orderId);
+        seckillOrder.setOrderId(orderInfo.getId());
         seckillOrder.setUserId(user.getId());
 		orderMapper.insertSeckillOrder(seckillOrder);
 		return orderInfo;
@@ -49,6 +49,11 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public SeckillOrder getSecKillOrderByUserIdGoodsId(Long userId, Long goodsId) {
         return orderMapper.getSeckillOrderByUserIdGoodsId(userId, goodsId);
+    }
+
+    @Override
+    public OrderInfo getOrderById(Long orderId) {
+        return orderMapper.getOrderById(orderId);
     }
 
 }

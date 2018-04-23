@@ -18,4 +18,6 @@ public interface OrderMapper {
     SeckillOrder getSeckillOrderByUserIdGoodsId(@Param("userId") Long userId, @Param("goodsId") Long goodsId);
 
     int insertSeckillOrder(SeckillOrder seckillOrder);
+
+    OrderInfo getOrderById(Long orderId);
 }

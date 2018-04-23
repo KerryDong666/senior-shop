@@ -13,4 +13,6 @@ public interface OrderService {
 
 
     SeckillOrder getSecKillOrderByUserIdGoodsId(Long userId, Long goodsId);
+
+    OrderInfo getOrderById(Long orderId);
 }

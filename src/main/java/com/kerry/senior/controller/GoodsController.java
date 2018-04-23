@@ -4,8 +4,10 @@ import com.kerry.senior.domain.Customer;
 import com.kerry.senior.redis.RedisConstant;
 import com.kerry.senior.redis.RedisKey;
 import com.kerry.senior.redis.RedisUtil;
+import com.kerry.senior.result.Result;
 import com.kerry.senior.service.GoodsService;
 import com.kerry.senior.util.CurrentUser;
+import com.kerry.senior.vo.GoodsDetailVo;
 import com.kerry.senior.vo.GoodsVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -147,9 +149,9 @@ public class GoodsController {
      * @param goodsId
      * @return
      */
-    @RequestMapping(value = "/to_detail/{goodsId}", produces = "text/html")
+    @RequestMapping(value = "/to_detail2/{goodsId}", produces = "text/html")
     @ResponseBody
-    public String detail(HttpServletRequest request, HttpServletResponse response, Model model, @CurrentUser Customer user, @PathVariable("goodsId")long goodsId) {
+    public String detail2(HttpServletRequest request, HttpServletResponse response, Model model, @CurrentUser Customer user, @PathVariable("goodsId")long goodsId) {
         //取数据
         String html = redisUtil.get(RedisKey.GOODS_PAGE+goodsId);
         if (StringUtils.isNotBlank(html)) {
@@ -184,5 +186,41 @@ public class GoodsController {
             redisUtil.setStringValue(RedisKey.GOODS_PAGE + goodsId, html, RedisConstant.GOODS_PAGE_EXPIRE);
         }
         return html;
+    }
+
+    /**
+     * 优化三:页面静态化(静态页面+ajax请求)
+     *    跳转到商品详情页
+     * @param model
+     * @param user
+     * @param goodsId
+     * @return
+     */
+    @RequestMapping(value = "/to_detail/{goodsId}")
+    @ResponseBody
+    public Result detail(HttpServletRequest request, HttpServletResponse response, Model model, @CurrentUser Customer user, @PathVariable("goodsId")long goodsId) {
+        GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);
+        long startAt = goods.getStartDate().getTime();
+        long endAt = goods.getEndDate().getTime();
+        long now = System.currentTimeMillis();
+
+        int seckillStatus = 0;
+        int remainSeconds = 0;
+        if (now < startAt) {//秒杀还没开始，倒计时
+            seckillStatus = 0;
+            remainSeconds = (int) ((startAt - now) / 1000);
+        } else if (now > endAt) {//秒杀已经结束
+            seckillStatus = 2;
+            remainSeconds = -1;
+        } else {//秒杀进行中
+            seckillStatus = 1;
+            remainSeconds = 0;
+        }
+        GoodsDetailVo vo = new GoodsDetailVo();
+        vo.setGoods(goods);
+        vo.setRemainSeconds(remainSeconds);
+        vo.setSeckillStatus(seckillStatus);
+        vo.setUser(user);
+        return Result.success(vo);
     }
 }

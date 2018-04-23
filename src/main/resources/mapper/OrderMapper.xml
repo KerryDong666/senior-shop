@@ -6,12 +6,15 @@
 		insert into seckill_order (user_id, order_id, goods_id) values (#{userId}, #{orderId}, #{goodsId});
 	</insert>
 	<!--插入订单信息-->
-	<insert id="insert" useGeneratedKeys="true">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
 		insert into order_info (user_id, goods_id, goods_name, goods_count, goods_price, order_channel, status, create_date) values (#{userId}, #{goodsId}, #{goodsName}, #{goodsCount}, #{goodsPrice}, #{orderChannel},#{status},#{createDate});
 	</insert>
 
 	<!--根据用户id和商品id查询秒杀订单-->
 	<select id="getSeckillOrderByUserIdGoodsId" resultType="com.kerry.senior.domain.SeckillOrder">
 		select * from seckill_order where user_id = #{userId} and goods_id = #{goodsId};
+	</select>
+	<select id="getOrderById" resultType="com.kerry.senior.domain.OrderInfo">
+		select * from order_info where id = #{orderId};
 	</select>
 </mapper>
