@@ -3,6 +3,7 @@ package com.kerry.senior.controller;
 import com.kerry.senior.domain.Customer;
 import com.kerry.senior.result.Result;
 import com.kerry.senior.service.CustomerService;
+import com.kerry.senior.util.CurrentUser;
 import com.kerry.senior.vo.CustomerRegisterVo;
 import com.kerry.senior.vo.LoginVo;
 import com.kerry.senior.websocket.WebSocket;
@@ -46,5 +47,15 @@ public class CustomerController {
         //webSocket.sendMessage(login.getNickname() + "登录成功");
         //webSocket.sendMsg("10003");
         return Result.success(login);
+    }
+
+
+    /**
+     * 查询用户信息
+     */
+    @RequestMapping(value = "/userInfo")
+    @ResponseBody
+    public Result userInfo(@CurrentUser Customer customer){
+        return Result.success(customer);
     }
 }

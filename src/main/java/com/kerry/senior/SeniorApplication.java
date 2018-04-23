@@ -2,6 +2,7 @@ package com.kerry.senior;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @ComponentScan(basePackages = "com.kerry.senior")
 @EnableTransactionManagement //开启事务支持
+@EnableCaching //开启缓存支持
 //@EnableDubboConfig //开启dubbo微服务
 public class SeniorApplication {
 

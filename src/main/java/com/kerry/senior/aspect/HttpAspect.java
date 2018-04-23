@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 @Component
 public class HttpAspect {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 
     //表示com.kerry.senior.controller包下的所有类的所有方法,必须这么写
     @Pointcut("execution(public * com.kerry.senior.controller.*.*(..))")

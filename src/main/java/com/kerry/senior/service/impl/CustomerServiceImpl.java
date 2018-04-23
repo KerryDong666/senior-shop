@@ -15,6 +15,8 @@ import com.kerry.senior.vo.LoginVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +29,7 @@ import java.util.Date;
  * @date 2018/3/29
  */
 @Service
+@CacheConfig(cacheNames = "customer")
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerMapper customerMapper;
@@ -64,7 +67,14 @@ public class CustomerServiceImpl implements CustomerService {
         return row;
     }
 
+    /**
+     * 优化三:对象缓存
+     * @param vo
+     * @param response
+     * @return
+     */
     @Override
+    @Cacheable(key = "#vo.mobilePhone")
     public Customer login(LoginVo vo, HttpServletResponse response) {
         if (vo == null) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);

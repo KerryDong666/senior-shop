@@ -30,6 +30,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        //registry.addInterceptor(new TokenCheckInterceptor()).addPathPatterns("/**");
         super.addInterceptors(registry);
     }
 }

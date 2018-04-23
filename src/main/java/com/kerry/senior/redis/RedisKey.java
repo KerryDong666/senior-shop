@@ -7,4 +7,6 @@ package com.kerry.senior.redis;
 public class RedisKey {
 
     public static final String USER_KEY = "user:id:";
+    public static final String GOODS_PAGE = "goods:page:";
+
 }

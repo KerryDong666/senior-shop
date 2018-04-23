@@ -13,7 +13,6 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -48,14 +47,14 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 		return customerService.getCustomerByToken(response, token);
 	}
 
-	private String getCookieValue(HttpServletRequest request, String cookieName) {
-		Cookie[]  cookies = request.getCookies();
-		for(Cookie cookie : cookies) {
-			if(cookie.getName().equals(cookieName)) {
-				return cookie.getValue();
-			}
-		}
-		return null;
-	}
+	//private String getCookieValue(HttpServletRequest request, String cookieName) {
+	//	Cookie[]  cookies = request.getCookies();
+	//	for(Cookie cookie : cookies) {
+	//		if(cookie.getName().equals(cookieName)) {
+	//			return cookie.getValue();
+	//		}
+	//	}
+	//	return null;
+	//}
 
 }
