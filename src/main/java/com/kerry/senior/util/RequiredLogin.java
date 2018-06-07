@@ -17,4 +17,10 @@ public @interface RequiredLogin {
      * 是否需要记录日志,默认不记录
      */
     boolean recordLog() default false;
+
+    /**
+     * 请求是否需要CSRFToken校验,默认不需要
+     * @return
+     */
+    boolean CSRFToken() default false;
 }

@@ -31,13 +31,15 @@ public class GlobalExceptionHandler {
         if(e instanceof GlobalException) { //自定义全局校验
             GlobalException ex = (GlobalException)e;
             return Result.error(ex.getCm());
-        }else if(e instanceof BindException) { //参数校验,可能存在多个参数异常,这里取第一个
+        }
+        //参数校验,可能存在多个参数异常,这里取第一个
+        else if(e instanceof BindException) {
             BindException ex = (BindException)e;
             List<ObjectError> errors = ex.getAllErrors();
             ObjectError error = errors.get(0);
             String msg = error.getDefaultMessage();
             return Result.error(CodeMsg.BIND_ERROR.fillArgs(msg));
-        }else if (e instanceof MethodArgumentNotValidException){ //其他异常类型返回服务异常
+        }else if (e instanceof MethodArgumentNotValidException){
             MethodArgumentNotValidException ex = (MethodArgumentNotValidException)e;
             BindingResult bindingResult = ex.getBindingResult();
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();

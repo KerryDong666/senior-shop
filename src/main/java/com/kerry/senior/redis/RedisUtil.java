@@ -117,6 +117,7 @@ public class RedisUtil {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
+            //redis的decr是原子性操作
             return jedis.decr(key);
         } finally {
             returnResource(jedis);

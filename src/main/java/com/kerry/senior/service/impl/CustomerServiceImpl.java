@@ -45,8 +45,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     public int register(CustomerRegisterVo vo) {
+        int row = 0;
         if (vo == null) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
@@ -60,7 +61,9 @@ public class CustomerServiceImpl implements CustomerService {
         String dbPassword = MD5.md5(vo.getPassword(), vo.getSalt());
         customer.setPassword(dbPassword);
         customer.setRegisterDate(new Date());
-        int row = customerMapper.insert(customer);
+        row = customerMapper.insert(customer);
+        //异常测试
+        int a = 1 / 0;
         if (row <= 0) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
@@ -69,6 +72,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     /**
      * 优化三:对象缓存
+     *
      * @param vo
      * @param response
      * @return

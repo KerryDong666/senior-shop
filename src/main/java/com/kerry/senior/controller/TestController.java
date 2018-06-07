@@ -6,7 +6,11 @@ import com.kerry.senior.result.Result;
 import com.kerry.senior.service.UserService;
 import com.kerry.senior.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -15,7 +19,7 @@ import java.util.List;
  * 测试使用
  * @author Kerry Dong
  */
-@RestController
+@Controller
 public class TestController {
 
     private final UserService userService;
@@ -74,5 +78,10 @@ public class TestController {
     public Result header() {
         sender.sendHeader("hello,imooc");
         return Result.success("Hello，world");
+    }
+
+    @RequestMapping("/tz")
+    public String tz() {
+        return "redirect:http://localhost/pay.html?orderNo=4653856347";
     }
 }

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<!-- bootstrap -->
+	<!--<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"/>-->
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.css" type="text/css"/>
+	<!--<link rel="stylesheet" href="/css/core.css" type="text/css"/>-->
+	<!-- jquery -->
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/plugins/jquery.twbsPagination.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container-fluid">
+						<a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span
+								class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
+						<a href="#" class="brand">网站名</a>
+						<div class="nav-collapse collapse navbar-responsive-collapse">
+							<ul class="nav">
+								<li class="active">
+									<a href="#">主页</a>
+								</li>
+								<li>
+									<a href="#">链接</a>
+								</li>
+								<li>
+									<a href="#">链接</a>
+								</li>
+								<li class="dropdown">
+									<a data-toggle="dropdown" class="dropdown-toggle" href="#">下拉菜单<strong
+											class="caret"></strong></a>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="#">下拉导航1</a>
+										</li>
+										<li>
+											<a href="#">下拉导航2</a>
+										</li>
+										<li>
+											<a href="#">其他</a>
+										</li>
+										<li class="divider">
+										</li>
+										<li class="nav-header">
+											标签
+										</li>
+										<li>
+											<a href="#">链接1</a>
+										</li>
+										<li>
+											<a href="#">链接2</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<ul class="nav pull-right">
+								<li>
+									<a href="#">右边链接</a>
+								</li>
+								<li class="divider-vertical">
+								</li>
+								<li class="dropdown">
+									<a data-toggle="dropdown" class="dropdown-toggle" href="#">下拉菜单<strong
+											class="caret"></strong></a>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="#">下拉导航1</a>
+										</li>
+										<li>
+											<a href="#">下拉导航2</a>
+										</li>
+										<li>
+											<a href="#">其他</a>
+										</li>
+										<li class="divider">
+										</li>
+										<li>
+											<a href="#">链接3</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					
+					</div>
+				</div>
+			
+			</div>
+			<h3 class="text-center">
+				这是一套可视化布局系统.
+			</h3>
+			<form class="form-search">
+				<input class="input-medium search-query" type="text"/>
+				<button type="submit" class="btn">查找</button>
+			</form>
+			
+			<table class="table table-bordered table-hover">
+				<thead>
+				<tr>
+					<th>
+						编号
+					</th>
+					<th>
+						产品
+					</th>
+					<th>
+						交付时间
+					</th>
+					<th>
+						状态
+					</th>
+					<th>
+						编辑
+					</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>
+						1
+					</td>
+					<td>
+						TB - Monthly
+					</td>
+					<td>
+						01/04/2012
+					</td>
+					<td>
+						Default
+					</td>
+					<td>
+						删除 编辑 保存
+					</td>
+				</tr>
+				<tr class="success">
+					<td>
+						1
+					</td>
+					<td>
+						TB - Monthly
+					</td>
+					<td>
+						01/04/2012
+					</td>
+					<td>
+						Approved
+					</td>
+					<td>
+						删除 编辑 保存
+					</td>
+				</tr>
+				<tr class="error">
+					<td>
+						2
+					</td>
+					<td>
+						TB - Monthly
+					</td>
+					<td>
+						02/04/2012
+					</td>
+					<td>
+						Declined
+					</td>
+					<td>
+						删除 编辑 保存
+					</td>
+				</tr>
+				<tr class="warning">
+					<td>
+						3
+					</td>
+					<td>
+						TB - Monthly
+					</td>
+					<td>
+						03/04/2012
+					</td>
+					<td>
+						Pending
+					</td>
+					<td>
+						删除 编辑 保存
+					</td>
+				</tr>
+				<tr class="info">
+					<td>
+						4
+					</td>
+					<td>
+						TB - Monthly
+					</td>
+					<td>
+						04/04/2012
+					</td>
+					<td>
+						Call in to confirm
+					</td>
+					<td>
+						删除 编辑 保存
+					</td>
+				</tr>
+				</tbody>
+			</table>
+			<div style="text-align: center;">
+				<ul id="pagination" class="pagination"></ul>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        $('#pagination').twbsPagination({
+            totalPages: 10,
+            startPage: 1,
+            visiblePages: 5,
+            first: "首页",
+            prev: "上一页",
+            next: "下一页",
+            last: "最后一页",
+            onPageClick: function (event, page) {
+//                $("#currentPage").val(page);
+//                $("#searchForm").submit();
+            }
+        });
+    })
+</script>

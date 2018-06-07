@@ -74,7 +74,17 @@
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.3.1</version>
 		</dependency>
-
+		<!--搜索引擎-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+		</dependency>
+		<!--JNA全称Java Native Access。JNA提供一组Java工具类用于在运行期动态访问系统本地库。-->
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>4.3.0</version>
+		</dependency>
 		<!--websocket实时推送-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
